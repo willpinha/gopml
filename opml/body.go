@@ -5,8 +5,8 @@ import (
 )
 
 type Body struct {
-	XMLName  xml.Name  `xml:"body"`
-	Outlines []Outline `xml:"outline"`
+	XMLName  xml.Name   `xml:"body"`
+	Outlines []*Outline `xml:"outline"`
 }
 
 type Outline struct {

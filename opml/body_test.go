@@ -54,3 +54,22 @@ func TestMarshalOutline(t *testing.T) {
 		snaps.MatchSnapshot(t, string(data))
 	}
 }
+
+func TestMarshalBody(t *testing.T) {
+	b := opml.Body{
+		Outlines: []*opml.Outline{
+			{
+				Text: "Hello",
+				Outlines: []*opml.Outline{
+					{Text: "World"},
+				},
+			},
+			{},
+		},
+	}
+
+	data, err := xml.MarshalIndent(b, "", "\t")
+
+	require.NoError(t, err)
+	snaps.MatchSnapshot(t, string(data))
+}

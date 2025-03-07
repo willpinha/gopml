@@ -18,3 +18,12 @@
     <outline text="Jack"></outline>
 </outline>
 ---
+
+[TestMarshalBody - 1]
+<body>
+    <outline text="Hello">
+        <outline text="World"></outline>
+    </outline>
+    <outline text=""></outline>
+</body>
+---
