@@ -51,6 +51,6 @@ func TestMarshalOutline(t *testing.T) {
 		data, err := xml.MarshalIndent(test, "", "\t")
 
 		require.NoError(t, err)
-		snaps.MatchStandaloneSnapshot(t, string(data))
+		snaps.MatchSnapshot(t, string(data))
 	}
 }

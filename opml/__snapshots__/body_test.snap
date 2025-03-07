@@ -1,0 +1,20 @@
+
+[TestMarshalOutline - 1]
+<outline text=""></outline>
+---
+
+[TestMarshalOutline - 2]
+<outline text="Hello world"></outline>
+---
+
+[TestMarshalOutline - 3]
+<outline text="Hello world" type="hello" isCommented="true" created="01 Jan 70 00:00 UTC" category="world"></outline>
+---
+
+[TestMarshalOutline - 4]
+<outline text="Names">
+    <outline text="Will"></outline>
+    <outline text="Bob"></outline>
+    <outline text="Jack"></outline>
+</outline>
+---
