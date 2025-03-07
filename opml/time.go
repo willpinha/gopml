@@ -1,6 +1,9 @@
 package opml
 
-import "time"
+import (
+	"encoding/xml"
+	"time"
+)
 
 type OpmlTime time.Time
 
@@ -20,4 +23,12 @@ func ParseOpmlTime(value string) (OpmlTime, error) {
 	}
 
 	return OpmlTime(t), nil
+}
+
+func (t OpmlTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	return e.EncodeElement(t.String(), start)
+}
+
+func (t OpmlTime) MarshalText() ([]byte, error) {
+	return []byte(t.String()), nil
 }
