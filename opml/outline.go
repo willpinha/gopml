@@ -2,7 +2,6 @@ package opml
 
 import (
 	"encoding/xml"
-	"time"
 )
 
 type Body struct {
@@ -16,7 +15,7 @@ type Outline struct {
 	Type         string    `xml:"type,attr"`
 	IsCommented  bool      `xml:"isCommented,attr"`
 	IsBreakpoint bool      `xml:"isBreakpoint,attr"`
-	Created      time.Time `xml:"created,attr"`
+	Created      OpmlTime  `xml:"created,attr"`
 	Category     string    `xml:"category,attr"`
 	Outlines     []Outline `xml:"outline"`
 }
