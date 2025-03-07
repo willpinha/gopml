@@ -5,7 +5,11 @@ import "time"
 type OpmlTime time.Time
 
 func (t OpmlTime) String() string {
-	return time.Time(t).Format(time.RFC822)
+	return t.ToTime().Format(time.RFC822)
+}
+
+func (t OpmlTime) ToTime() time.Time {
+	return time.Time(t)
 }
 
 func ParseOpmlTime(value string) (OpmlTime, error) {
