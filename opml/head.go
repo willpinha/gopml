@@ -5,7 +5,7 @@ import (
 )
 
 type Head struct {
-	XMLName         xml.Name  `xml:"head,omitempty"`
+	XMLName         xml.Name  `xml:"head"`
 	Title           string    `xml:"title,omitempty"`
 	DateCreated     *OpmlTime `xml:"dateCreated,omitempty"`
 	DateModified    *OpmlTime `xml:"dateModified,omitempty"`
