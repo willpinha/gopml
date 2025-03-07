@@ -14,19 +14,19 @@ const (
 )
 
 var (
-	ErrUnknownPomlVersion     = errors.New("unknown POML version (only versions 1.0, 1.1 and 2.0 are valid)")
-	ErrUnsupportedPomlVersion = errors.New("unsupported POML version (gopml only supports version 2.0)")
+	ErrUnknownOpmlVersion     = errors.New("unknown OPML version (only versions 1.0, 1.1 and 2.0 are valid)")
+	ErrUnsupportedOpmlVersion = errors.New("unsupported OPML version (gopml only supports version 2.0)")
 )
 
 func (o *Opml) ValidateVersion() error {
 	validVersions := []Version{Version1, Version1_1, Version2}
 
 	if !slices.Contains(validVersions, o.Version) {
-		return ErrUnknownPomlVersion
+		return ErrUnknownOpmlVersion
 	}
 
 	if o.Version != Version2 {
-		return ErrUnsupportedPomlVersion
+		return ErrUnsupportedOpmlVersion
 	}
 
 	return nil

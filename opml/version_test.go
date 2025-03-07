@@ -12,9 +12,9 @@ func TestValidateVersion(t *testing.T) {
 		input  opml.Version
 		output error
 	}{
-		{input: "invalid", output: opml.ErrUnknownPomlVersion},
-		{input: "1.0", output: opml.ErrUnsupportedPomlVersion},
-		{input: "1.1", output: opml.ErrUnsupportedPomlVersion},
+		{input: "invalid", output: opml.ErrUnknownOpmlVersion},
+		{input: "1.0", output: opml.ErrUnsupportedOpmlVersion},
+		{input: "1.1", output: opml.ErrUnsupportedOpmlVersion},
 		{input: "2.0", output: nil},
 	}
 
