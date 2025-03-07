@@ -10,3 +10,5 @@ type Opml struct {
 	Head    Head     `xml:"head"`
 	Body    Body     `xml:"body"`
 }
+
+func (o Opml) IterateExpansionState(callback func(o Outline)) {}

@@ -20,3 +20,7 @@ type Head struct {
 	WindowBottom    int      `xml:"windowBottom"`
 	WindowRight     int      `xml:"windowRight"`
 }
+
+func (h Head) ExtractExpansionState() ([]int, error) {
+	return nil, nil
+}
