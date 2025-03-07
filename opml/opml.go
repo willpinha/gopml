@@ -11,4 +11,4 @@ type Opml struct {
 	Body    Body     `xml:"body"`
 }
 
-func (o Opml) IterateExpansionState(callback func(o Outline)) {}
+func (o *Opml) IterateExpansionState(callback func(outline Outline)) {}
