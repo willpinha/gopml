@@ -41,3 +41,13 @@ func (o *IncludeOutline) ReadOutlines() error {
 
 	return nil
 }
+
+type RSSOutline struct {
+	Outline
+	XmlURL      string `xml:"xmlUrl,attr"`
+	Description string `xml:"description,attr,omitempty"`
+	HtmlURL     string `xml:"htmlUrl,attr,omitempty"`
+	Language    string `xml:"language,attr,omitempty"`
+	Title       string `xml:"title,attr,omitempty"`
+	Version     string `xml:"version,attr,omitempty"`
+}
