@@ -1,5 +1,0 @@
-<outline type="text" text="Hello *world*">
-  <outline type="image" text="/path/to/image.png"></outline>
-  <outline type="quote" text="A simple quote" by="Willian"></outline>
-  <outline type="code" text="const x = 2;\n\nconsole.log(x)" language="javascript" filename="hey.js"></outline>
-</outline>
