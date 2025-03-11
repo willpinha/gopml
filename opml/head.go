@@ -2,6 +2,9 @@ package opml
 
 import (
 	"encoding/xml"
+	"fmt"
+	"strconv"
+	"strings"
 )
 
 type Head struct {
@@ -22,5 +25,25 @@ type Head struct {
 }
 
 func (h *Head) ExtractExpansionState() ([]int, error) {
-	return nil, nil
+	if h.ExpansionState == "" {
+		return []int{}, nil
+	}
+
+	split := strings.Split(h.ExpansionState, ",")
+
+	numbers := make([]int, len(split))
+
+	for i, s := range split {
+		sTrim := strings.TrimSpace(s)
+
+		n, err := strconv.Atoi(sTrim)
+
+		if err != nil {
+			return nil, fmt.Errorf("could not extract expansion state: %v", err)
+		}
+
+		numbers[i] = n
+	}
+
+	return numbers, nil
 }
