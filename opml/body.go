@@ -19,3 +19,25 @@ type Outline struct {
 	Category     string     `xml:"category,attr,omitempty"`
 	Outlines     []*Outline `xml:"outline"`
 }
+
+type LinkOutline struct {
+	Outline
+	URL string `xml:"url,attr"`
+}
+
+type IncludeOutline struct {
+	Outline
+	URL string `xml:"url,attr"`
+}
+
+func (o *IncludeOutline) ReadOutlines() error {
+	externalOpml, err := ReadFromURL(o.URL)
+
+	if err != nil {
+		return err
+	}
+
+	o.Outlines = externalOpml.Body.Outlines
+
+	return nil
+}
