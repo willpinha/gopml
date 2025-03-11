@@ -14,64 +14,50 @@ type Opml struct {
 	Body    *Body    `xml:"body"`
 }
 
-func LoadFromFile(filename string) (*Opml, error) {
-	data, err := os.ReadFile(filename)
-
-	if err != nil {
-		return &Opml{}, nil
-	}
-
+func ReadFrom(r io.Reader) (*Opml, error) {
 	var o *Opml
 
-	err = xml.Unmarshal(data, o)
+	err := xml.NewDecoder(r).Decode(o)
 
 	if err != nil {
-		return &Opml{}, nil
+		return nil, err
 	}
 
 	return o, nil
 }
 
-func LoadFromURL(url string) (*Opml, error) {
+func ReadFromFile(f *os.File) (*Opml, error) {
+	return ReadFrom(f)
+}
+
+func ReadFromURL(url string) (*Opml, error) {
 	resp, err := http.Get(url)
 
 	if err != nil {
-		return &Opml{}, err
+		return nil, err
 	}
 
 	defer resp.Body.Close()
 
-	body, err := io.ReadAll(resp.Body)
-
-	if err != nil {
-		return &Opml{}, err
-	}
-
-	var o *Opml
-
-	err = xml.Unmarshal(body, o)
-
-	if err != nil {
-		return &Opml{}, err
-	}
-
-	return o, nil
+	return ReadFrom(resp.Body)
 }
 
-func (o *Opml) SaveToFile(filename string) error {
-	data, err := xml.MarshalIndent(o, "\t", "\t\t")
+func (o *Opml) WriteTo(w io.Writer) (int64, error) {
+	data, err := xml.Marshal(o)
 
 	if err != nil {
-		return err
+		return 0, err
 	}
 
-	err = os.WriteFile(filename, data, 0666)
+	n, err := w.Write(data)
 
 	if err != nil {
-		return err
+		return 0, err
 	}
 
-	return nil
+	return int64(n), nil
 }
 
-func (o *Opml) ForEachExpansionState(callback func(outline Outline)) {}
+func (o *Opml) WriteToFile(f *os.File) (int64, error) {
+	return o.WriteTo(f)
+}
