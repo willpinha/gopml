@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/gkampitakis/go-snaps/snaps"
 	"github.com/stretchr/testify/require"
@@ -19,6 +20,8 @@ func TestMain(m *testing.M) {
 }
 
 func TestMarshalOutline(t *testing.T) {
+	mockOpmlTime := opml.OpmlTime(time.Unix(0, 0).UTC())
+
 	tests := []opml.Outline{
 		{},
 		{
@@ -64,6 +67,27 @@ func TestMarshalBody(t *testing.T) {
 	}
 
 	data, err := xml.MarshalIndent(b, "", "\t")
+
+	require.NoError(t, err)
+	snaps.MatchSnapshot(t, string(data))
+}
+
+func TestCustomOutline(t *testing.T) {
+	type CustomOutline struct {
+		opml.Outline
+		Hello string `xml:"hello,attr"`
+		World int    `xml:"world"`
+	}
+
+	c := CustomOutline{
+		Outline: opml.Outline{
+			Text: "Goodbye everybody",
+		},
+		Hello: "hello",
+		World: 1,
+	}
+
+	data, err := xml.Marshal(c)
 
 	require.NoError(t, err)
 	snaps.MatchSnapshot(t, string(data))

@@ -27,3 +27,7 @@
     <outline text=""></outline>
 </body>
 ---
+
+[TestCustomOutline - 1]
+<outline text="Goodbye everybody" hello="hello"><world>1</world></outline>
+---
