@@ -14,7 +14,7 @@ func TestExtractExpansionState(t *testing.T) {
 	}{
 		{input: "1,2,3,4", output: []int{1, 2, 3, 4}},
 		{input: "", output: []int{}},
-		{input: "  1  ,  2  ,  3  ,  4  ", output: []int{1, 2, 3, 4}},
+		{input: "  1  ,  2  ,  3  ,  4  ", output: []int{1, 2, 3, 4}}, // should ignore whitespaces
 		{input: ",1,2,", output: nil},
 		{input: "1,a,2", output: nil},
 	}
