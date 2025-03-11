@@ -8,11 +8,14 @@ import (
 	"github.com/willpinha/gopml/opml"
 )
 
+var (
+	mockOpmlTime = opml.OpmlTime(time.Unix(0, 0).UTC())
+)
+
 func TestMarshalAndParseOpmlTime(t *testing.T) {
-	opmlTime := opml.OpmlTime(time.Unix(0, 0).UTC())
 	s := "01 Jan 70 00:00 UTC"
 
-	m, err := opmlTime.MarshalText()
+	m, err := mockOpmlTime.MarshalText()
 
 	require.NoError(t, err)
 	require.Equal(t, s, string(m))
@@ -20,5 +23,5 @@ func TestMarshalAndParseOpmlTime(t *testing.T) {
 	p, err := opml.ParseOpmlTime(s)
 
 	require.NoError(t, err)
-	require.Equal(t, opmlTime, p)
+	require.Equal(t, mockOpmlTime, p)
 }

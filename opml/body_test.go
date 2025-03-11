@@ -4,7 +4,6 @@ import (
 	"encoding/xml"
 	"os"
 	"testing"
-	"time"
 
 	"github.com/gkampitakis/go-snaps/snaps"
 	"github.com/stretchr/testify/require"
@@ -18,10 +17,6 @@ func TestMain(m *testing.M) {
 
 	os.Exit(v)
 }
-
-var (
-	mockOpmlTime = opml.OpmlTime(time.Unix(0, 0).UTC())
-)
 
 func TestMarshalOutline(t *testing.T) {
 	tests := []opml.Outline{
