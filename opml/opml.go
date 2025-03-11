@@ -15,15 +15,15 @@ type Opml struct {
 }
 
 func ReadFrom(r io.Reader) (*Opml, error) {
-	var o *Opml
+	var o Opml
 
-	err := xml.NewDecoder(r).Decode(o)
+	err := xml.NewDecoder(r).Decode(&o)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return o, nil
+	return &o, nil
 }
 
 func ReadFromFile(f *os.File) (*Opml, error) {
