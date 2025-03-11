@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// Represents a time in RFC822 format.
 type OpmlTime time.Time
 
 func (t OpmlTime) String() string {

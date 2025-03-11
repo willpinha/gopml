@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// Contains OPML document metadata.
 type Head struct {
 	XMLName         xml.Name  `xml:"head"`
 	Title           string    `xml:"title,omitempty"`
@@ -24,6 +25,7 @@ type Head struct {
 	WindowRight     int       `xml:"windowRight,omitempty"`
 }
 
+// Extracts the numbers defined in the expansionState header.
 func (h *Head) ExtractExpansionState() ([]int, error) {
 	if h.ExpansionState == "" {
 		return []int{}, nil

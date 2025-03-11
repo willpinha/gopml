@@ -14,6 +14,7 @@ type Opml struct {
 	Body    *Body    `xml:"body"`
 }
 
+// Reads the data defined in the reader and converts it to Opml.
 func ReadFrom(r io.Reader) (*Opml, error) {
 	var o Opml
 
@@ -26,10 +27,12 @@ func ReadFrom(r io.Reader) (*Opml, error) {
 	return &o, nil
 }
 
+// Reads the data defined in a file and converts it to Opml.
 func ReadFromFile(f *os.File) (*Opml, error) {
 	return ReadFrom(f)
 }
 
+// Reads data returned from a URL (as an OPML document) and converts it to Opml.
 func ReadFromURL(url string) (*Opml, error) {
 	resp, err := http.Get(url)
 
@@ -42,6 +45,7 @@ func ReadFromURL(url string) (*Opml, error) {
 	return ReadFrom(resp.Body)
 }
 
+// Write Opml to a writer.
 func (o *Opml) WriteTo(w io.Writer) (int64, error) {
 	data, err := xml.Marshal(o)
 
@@ -58,6 +62,7 @@ func (o *Opml) WriteTo(w io.Writer) (int64, error) {
 	return int64(n), nil
 }
 
+// Write Opml to a file.
 func (o *Opml) WriteToFile(f *os.File) (int64, error) {
 	return o.WriteTo(f)
 }
