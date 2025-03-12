@@ -24,6 +24,7 @@ jobs:
       - name: Test with the Go CLI
         run: go test ./...
   release:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Run GoReleaser
