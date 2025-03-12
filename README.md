@@ -1,6 +1,6 @@
 # [gopml]()
 
-*Go package for managing OPML 2.0 files*
+*Go package for managing OPML 2.0 documents*
 
 ```
 go get github.com/willpinha/gopml
