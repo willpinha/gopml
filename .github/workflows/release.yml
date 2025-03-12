@@ -1,7 +1,6 @@
-name: CI
+name: Release
 
 on:
-  workflow_dispatch:
   pull_request:
   push:
     tags:
@@ -23,12 +22,6 @@ jobs:
         run: go build -v ./...
       - name: Test with the Go CLI
         run: go test ./...
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
