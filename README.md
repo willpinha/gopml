@@ -1,4 +1,4 @@
-# [gopml]()
+# [gopml](https://pkg.go.dev/github.com/willpinha/gopml/opml)
 
 *Go package for managing OPML 2.0 documents*
 
